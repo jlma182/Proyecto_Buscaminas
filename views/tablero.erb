@@ -1,0 +1,44 @@
+<h1>MOSTRAR TABLRERO</h1>
+<h1>Esta jugando:<input type= "text" name=Usuario value=<%=@nombre_usuario%>></h1>
+<%@mostrar_tablero.each_with_index do |filas, i|%>
+    <%filas.each_with_index do |columnas, j|%>
+
+        <% if @mostrar_tablero[i][j].estado_celda==true && @mostrar_tablero[i][j].estado_bandera==false%>
+                <input type="button" value=<%=@mostrar_tablero[i][j].caracter_celda%>>
+        <% else %> 
+            <% if @mostrar_tablero[i][j].estado_bandera %>
+                <input type="button" value="B">
+            <% else %>
+                <input type="button" value=<%=i.to_s+"-"+j.to_s%>>
+            <% end %>
+        <% end %>
+    
+    <%end%>
+    <br/>
+<%end%>
+<br>
+<form method='post' action='/obteneryandx'>
+    <h4>Sector para destapar una casilla</h4>
+    <label>Eje X <input type="text" required="required" name=X></label>
+    <label>Eje Y <input type="text" required="required" name=Y></label>
+    <input type="submit" value="Enviar">
+    <input type= "hidden" name=Usuario value=<%=@nombre_usuario%>>
+</form>
+<form method='post' action='/disminuir_contador_bandera'>
+    <h4>Sector de poner banderas</h4>    
+    <label>Eje X <input type="text" required="required" name=X></label>
+    <label>Eje Y <input type="text" required="required" name=Y></label>
+    <input type="submit" value="poner_bandera">
+    <br>
+    <input type="hidden" name=Usuario value=<%=@nombre_usuario%>>
+    
+</form>
+
+<form method='post' action='formato'>
+        
+        <br>
+
+        <input type='submit' value='REINICIAR PARTIDA'>
+        <br>
+    </form>
+

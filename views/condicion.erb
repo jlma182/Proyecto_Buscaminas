@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <h2>ES UN TABLRERO DE 8*8 Y CORRESPONDE A NIVEL BASICO</H2>
+    <h1>Tienes 10 banderas</h1>
+    <h1>En el tablero HAY 10 minas</h1>
+    
+    <form method='get' action='/'>
+        <input type="submit" value='volver al inicio'>
+    </form>
+
+
+    <form method='get' action='/juego'>
+        <!--<label>INGRESE SU NOMBRE: <input type="text" name=Usuario ></label>-->
+        <label>INGRESE SU NOMBRE: <input type="text" name=Usuario value=<%=@JugadorX%> readonly ></label>
+        <center><input type="submit" value='Jugar!'><center>
+    </form>
+</body>
+</html>
