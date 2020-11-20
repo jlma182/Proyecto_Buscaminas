@@ -1,5 +1,5 @@
 require 'sinatra'
-require 'C:\Users\Jorge L\ruby inge\template2_6_5-master-buscaminas\lib\tablero.rb'
+require 'tablero.rb'
 require '.\lib\jugador.rb'
 
 tablero_juego=Tablero.new
