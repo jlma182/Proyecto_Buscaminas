@@ -1,6 +1,6 @@
 require 'sinatra'
 require 'tablero.rb'
-require '.\lib\jugador.rb'
+require 'jugador.rb'
 
 tablero_juego=Tablero.new
 
