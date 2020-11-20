@@ -1,5 +1,5 @@
 # A sample Gemfile
-ruby '2.6.5'
+ruby '2.6.6'
 
 source "https://rubygems.org"
 
@@ -14,3 +14,4 @@ gem 'rack-test', '~> 1.1'# default web driver for capybara
 gem 'better_errors', '~> 2.7' #better log errors on web
 gem "rubycritic"
 gem 'rubocop'
+gem 'rake'
