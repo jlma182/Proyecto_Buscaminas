@@ -40,16 +40,16 @@ class Tablero
     end
     def generar_tablero_con_minas_con_celda()   
         @tablero[0][0].caracter_celda=generar_mina()
-        @tablero[0][1].caracter_celda="2"
-        @tablero[0][2].caracter_celda="0"
-        @tablero[1][0].caracter_celda="2"
+        @tablero[0][1].caracter_celda="#"
+        @tablero[0][2].caracter_celda="#"
+        @tablero[1][0].caracter_celda="#"
         @tablero[1][1].caracter_celda="#"
         @tablero[2][2].caracter_celda="#"
         @tablero[3][3].caracter_celda="#"
         @tablero[4][4].caracter_celda="#"
         @tablero[7][7].caracter_celda="#"
         @tablero[5][3].caracter_celda="#"
-        @tablero[2][1].caracter_celda="#"
+        @tablero[2][5].caracter_celda="#"
         @tablero[3][4].caracter_celda="#"
         @tablero[1][7].caracter_celda="#"
     end
@@ -74,4 +74,96 @@ class Tablero
             @cantidad_banderas=@cantidad_banderas+1
         end
     end
+    #Segunda iteración
+    def verificar_lado_derecho(x,y)
+        if verificar_dentro_rango(x,y+1)          
+            if @tablero[x][y+1].caracter_celda=="#"
+                verificar_contenido(x,y)
+            end
+        end
+    end
+    def verificar_lado_inferior(x,y)
+        if verificar_dentro_rango(x+1,y)     
+            if @tablero[x+1][y].caracter_celda=="#"
+                verificar_contenido(x,y)
+            end
+        end
+    end
+    def verificar_lado_izquierdo(x,y)
+        if verificar_dentro_rango(x,y-1)     
+                if @tablero[x][y-1].caracter_celda=="#"
+                    verificar_contenido(x,y)
+                end
+        end
+    end
+    def verificar_lado_superior(x,y)
+        if verificar_dentro_rango(x-1,y)   
+            if @tablero[x-1][y].caracter_celda=="#"
+                verificar_contenido(x,y)
+            end
+        end
+    end
+    def verificar_lado_superior_derecho(x,y)
+        if verificar_dentro_rango(x-1,y+1)   
+                if @tablero[x-1][y+1].caracter_celda=="#"
+                    verificar_contenido(x,y)
+                end
+        end
+    end
+    def verificar_lado_superior_izquierdo(x,y)
+        if verificar_dentro_rango(x-1,y-1)   
+            if @tablero[x-1][y-1].caracter_celda=="#" 
+                verificar_contenido(x,y)
+            end
+        end
+    end
+    def verificar_lado_inferior_derecho(x,y)
+        if verificar_dentro_rango(x+1,y+1)     
+                if @tablero[x+1][y+1].caracter_celda=="#"
+                    verificar_contenido(x,y)
+                end
+        end
+    end
+    def verificar_lado_inferior_izquierdo(x,y)
+        if verificar_dentro_rango(x+1,y-1)     
+                if @tablero[x+1][y-1].caracter_celda=="#"
+                    verificar_contenido(x,y)
+                end
+        end
+    end
+
+    def verificar_dentro_rango(x,y)
+        return x>=0 && x<@columnas && y>=0 && y<@filas
+    end 
+    def verificar_contenido(x,y)
+        if @tablero[x][y].caracter_celda!="#" #&& @tablero[x][y].caracter_celda!="B"
+            @tablero[x][y].caracter_celda=(@tablero[x][y].caracter_celda.to_i+1).to_s 
+        end
+    end 
+    def verificar_filas_x_columnas(x,y)
+        verificar_lado_superior_izquierdo(x,y)
+        verificar_lado_superior(x,y)
+        verificar_lado_superior_derecho(x,y)
+        verificar_lado_izquierdo(x,y)
+        verificar_lado_derecho(x,y)
+        verificar_lado_inferior_izquierdo(x,y)
+        verificar_lado_inferior(x,y)
+        verificar_lado_inferior_derecho(x,y)
+    end  
+    
+    def precargar_numeros()
+        i=0
+        j=0
+        while i<filas do
+            while j <columnas do
+                # puts(i.to_s+"-"+j.to_s)
+                verificar_filas_x_columnas(i,j)
+                j+=1
+            end
+            j=0
+            i+=1
+        end
+    end
+
+    
 end

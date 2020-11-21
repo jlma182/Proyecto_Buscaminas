@@ -1,6 +1,6 @@
 require 'sinatra'
-require 'tablero.rb'
-require 'jugador.rb'
+require './lib/tablero'
+require './lib/jugador'
 
 tablero_juego=Tablero.new
 
@@ -25,6 +25,7 @@ get '/juego' do
     #tablero_juego.generar_tablero_numerico()
     tablero_juego.generar_tablero_con_celda_nivel_basico()
     tablero_juego.generar_tablero_con_minas_con_celda()
+    tablero_juego.precargar_numeros()
     @mostrar_tablero=tablero_juego.tablero
     
     erb :tablero
@@ -35,6 +36,7 @@ post '/obteneryandx' do
     y=params[:Y].to_i
     @nombre_usuario=params[:Usuario]
     tablero_juego.cambiar_estado_celda(x,y)
+    #tablero_juego.verificar_filas_x_columnas(x,y)
     # if(verificar_caracter==false)    
     @mostrar_tablero=tablero_juego.tablero
     erb :tablero 
@@ -50,4 +52,4 @@ post '/disminuir_contador_bandera' do
     tablero_juego.disminuir_cantidad_banderas_en_uno()
     @mostrar_tablero=tablero_juego.tablero
     erb :tablero
-  end
+end

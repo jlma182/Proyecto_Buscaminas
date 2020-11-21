@@ -2,6 +2,7 @@ require "tablero"
 require "celda"
 require "jugador"
 require "cronometro"
+
 RSpec.describe Tablero do
     before {@tablero = Tablero.new()
             @celda=Celda.new
@@ -112,4 +113,44 @@ RSpec.describe Tablero do
         #expect(@cronometro.cronometro()).to eq "001"
     #end
 
+    #Inicio de la segunda iteracion
+    # para que pasese estar pruebas se debe seguir el esquema de generar_tablero_con_minas_con_celda() 
+    it "verificar si hay mina lado derecho" do
+        @tablero.generar_tablero_con_celda_nivel_basico()
+        @tablero.generar_tablero_con_minas_con_celda()
+        @tablero.verificar_lado_derecho(2,1)
+        expect(@tablero.tablero[2][1].caracter_celda).to eq "1"
+
+    end
+    it "verificar si hay mina lado inferior" do
+        @tablero.generar_tablero_con_celda_nivel_basico()
+        @tablero.generar_tablero_con_minas_con_celda()
+        @tablero.verificar_lado_inferior(2,1)
+        expect(@tablero.tablero[2][1].caracter_celda).to eq " "
+
+    end
+    it "verificar si hay mina lado inferior derecho" do
+        @tablero.generar_tablero_con_celda_nivel_basico()
+        @tablero.generar_tablero_con_minas_con_celda()
+        @tablero.verificar_lado_inferior_derecho(2,1)
+        expect(@tablero.tablero[2][1].caracter_celda).to eq " "
+
+    end
+    it "verificar si hay mina lado inferior izquierdo" do
+        @tablero.generar_tablero_con_celda_nivel_basico()
+        @tablero.generar_tablero_con_minas_con_celda()
+        @tablero.verificar_lado_inferior_izquierdo(2,1)
+        expect(@tablero.tablero[2][1].caracter_celda).to eq " "
+
+    end    
+    it "verificar si hay mina lado derecho y superior" do
+        @tablero.generar_tablero_con_celda_nivel_basico()
+        @tablero.generar_tablero_con_minas_con_celda()
+        @tablero.verificar_lado_derecho(2,1)
+        expect(@tablero.tablero[2][1].caracter_celda).to eq "1"
+        @tablero.verificar_lado_superior(2,1)
+        expect(@tablero.tablero[2][1].caracter_celda).to eq "2"
+
+    end 
+    #Aleatorio
 end

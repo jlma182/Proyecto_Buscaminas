@@ -9,7 +9,8 @@
             <% if @mostrar_tablero[i][j].estado_bandera %>
                 <input type="button" value="B">
             <% else %>
-                <input type="button" value=<%=i.to_s+"-"+j.to_s%>>
+                <!--<input type="button" value=<%=i.to_s+"-"+j.to_s%>>-->
+                <input type="button" value=<%=@mostrar_tablero[i][j].caracter_celda%>>
             <% end %>
         <% end %>
     
