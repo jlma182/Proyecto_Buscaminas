@@ -1,9 +1,11 @@
 require "tablero"
 require "celda"
 require "jugador"
+require "cronometro"
 RSpec.describe Tablero do
     before {@tablero = Tablero.new()
-            @celda=Celda.new}
+            @celda=Celda.new
+            @cronometro=Cronometro.new}
 
     it "establecer tablero 8*8" do
 
@@ -97,5 +99,17 @@ RSpec.describe Tablero do
         expect(@tablero.tablero[2][4].estado_bandera).to be true
         @tablero.cambiar_estado_bandera_a_origen(2,4)
         expect(@tablero.tablero[2][4].estado_bandera).to be false
-    end 
+    end
+    it "Mostrar y cambiar valores de la clase cronometro" do
+        expect(@cronometro.getTiempo()).to eq "000"
+        @cronometro.setTiempo(0.to_s+1.to_s+1.to_s)
+        expect(@cronometro.getTiempo()).to eq "011"
+    end
+    #it "Inicar cronometro con limite 111" do 
+     #   estado=false
+      #  @cronometro.cronometro()
+       # @cronometro.setEstado_conometro(estado)
+        #expect(@cronometro.cronometro()).to eq "001"
+    #end
+
 end

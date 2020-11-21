@@ -1,6 +1,6 @@
 require 'sinatra'
-require '.\lib\tablero.rb'
-require '.\lib\jugador.rb'
+require 'tablero.rb'
+require 'jugador.rb'
 
 tablero_juego=Tablero.new
 
@@ -34,9 +34,12 @@ post '/obteneryandx' do
     x=params[:X].to_i
     y=params[:Y].to_i
     @nombre_usuario=params[:Usuario]
-    tablero_juego.cambiar_estado_celda(x,y)    
+    tablero_juego.cambiar_estado_celda(x,y)
+    # if(verificar_caracter==false)    
     @mostrar_tablero=tablero_juego.tablero
     erb :tablero 
+    # else
+    # erb :fin_juego(nombre_j,tiempo) 
 end
 
 post '/disminuir_contador_bandera' do
