@@ -1,19 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    body { 
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-image: url('/images/b.jpeg');
+        background-size: 100% auto;
+    }
+
+     .content-prev {
+        background-color: rgba(200, 200, 200, 0.65);
+        width:500px;
+        height:auto;
+        margin:80px 0px 0px 0px;
+        padding: 10px 20px 20px;
+        color:#333;
+        border:2px solid #C2D6FF;
+        border-radius:40px 0 40px 0;
+    }
+
+    </style>
+</head>
 <body>
-    <h2>ES UN TABLRERO DE 8*8 Y CORRESPONDE A NIVEL BASICO</H2>
-    <h1>Tienes 10 banderas</h1>
-    <h1>En el tablero HAY 10 minas</h1>
+<div class="content-prev">
+    <h1> Tablero: </h1>
+    <h2>- ES UN TABLRERO DE 8*8 Y CORRESPONDE AL NIVEL BASICO</H2>
+    <h2>- Tienes 10 banderas</h2>
+    <h2>- En el tablero existe 10 minas</h2>
     
-    <form method='get' action='/'>
+    <center><form method='get' action='/'>
         <input type="submit" value='volver al inicio'>
-    </form>
-
-
+    </form><center>
+    <br>
+    <!--<label>INGRESE SU NOMBRE: <input type="text" name=Usuario ></label>-->
+    <br>
     <form method='get' action='/juego'>
-        <!--<label>INGRESE SU NOMBRE: <input type="text" name=Usuario ></label>-->
-        <label>INGRESE SU NOMBRE: <input type="text" name=Usuario value=<%=@JugadorX%> readonly ></label>
-        <center><input type="submit" value='Jugar!'><center>
+        INGRESE SU NOMBRE: <input type="text" name='nombre'>
+        <center><input type="submit" value='JUGAR !!'><center>
     </form>
+    </div>
 </body>
 </html>

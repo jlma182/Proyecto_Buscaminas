@@ -1,6 +1,6 @@
 require 'sinatra'
-require './lib/tablero'
-require './lib/jugador'
+require 'tablero'
+require 'jugador'
 
 tablero_juego=Tablero.new
 
@@ -15,13 +15,14 @@ end
 
 post '/formato' do
     jugador=Jugador.new
-    @JugadorX=jugador.nombre
+    @juga1=jugador.ingresar_nombre((params[:nombre]))
+    @juga2=params[:nombre]
     erb:condicion
 end
 
 get '/juego' do
     
-    @nombre_usuario=params[:Usuario]
+    @nombre_usuario=params[:nombre]
     #tablero_juego.generar_tablero_numerico()
     tablero_juego.generar_tablero_con_celda_nivel_basico()
     tablero_juego.generar_tablero_con_minas_con_celda()
@@ -52,4 +53,12 @@ post '/disminuir_contador_bandera' do
     tablero_juego.disminuir_cantidad_banderas_en_uno()
     @mostrar_tablero=tablero_juego.tablero
     erb :tablero
+end
+
+post '/formato2' do
+    erb:condicion2
+end
+
+post '/formatoP' do
+    erb:condicionP
 end
