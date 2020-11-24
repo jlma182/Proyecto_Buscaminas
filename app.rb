@@ -3,7 +3,8 @@ require './lib/tablero'
 require './lib/jugador'
 
 tablero_juego=Tablero.new
-
+jugador=Jugador.new
+jugador.setNombre("Jugador_1")
 get '/' do
     erb :pantallainicio
 end
@@ -14,17 +15,22 @@ post '/escogerNivel' do
 end
 
 post '/formato' do
+    # @JugadorX=jugador.getNombre()
+    # erb:condicion
     jugador=Jugador.new
-    @JugadorX=jugador.nombre
+    # @juga1=jugador.setNombre((params[:nombre]))
+    # @juga2=params[:nombre]
     erb:condicion
 end
 
 get '/juego' do
     
-    @nombre_usuario=params[:Usuario]
+    @nombre_usuario=params[:nombre]
+    #jugador.setNombre(@nombre_usuario)
     #tablero_juego.generar_tablero_numerico()
     tablero_juego.generar_tablero_con_celda_nivel_basico()
-    tablero_juego.generar_tablero_con_minas_con_celda()
+    #tablero_juego.generar_tablero_con_minas_con_celda()
+    tablero_juego.insert_minas_aleatoreamente(10)
     tablero_juego.precargar_numeros()
     @mostrar_tablero=tablero_juego.tablero
     
@@ -52,4 +58,12 @@ post '/disminuir_contador_bandera' do
     tablero_juego.disminuir_cantidad_banderas_en_uno()
     @mostrar_tablero=tablero_juego.tablero
     erb :tablero
+end
+
+post '/formato2' do
+    erb:condicion2
+end
+
+post '/formatoP' do
+    erb:condicionP
 end

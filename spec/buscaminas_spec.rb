@@ -41,45 +41,46 @@ RSpec.describe Tablero do
     end
 
     it "Crear clase celda y verificar los atributos" do
-        expect(@celda.caracter_celda).to eq ' '
-        expect(@celda.estado_celda).to be false
+        expect(@celda.getCaracter_celda()).to eq ' '
+        expect(@celda.getEstado_celda()).to be false
     end
 
     it "Vericar el atributo estado de celda y cambiar dicho estado del atributo" do
-        expect(@celda.estado_celda).to be false
+        expect(@celda.getEstado_celda()).to be false
         @celda.cambiar_estado_celda()
-        expect(@celda.estado_celda).to be true
+        expect(@celda.getEstado_celda()).to be true
     end
 
     it "Crear tablero con clase celda "do
         @tablero.generar_tablero_con_celda_nivel_basico()
-        expect(@tablero.tablero[0][0].caracter_celda).to eq ' '
+        expect(@tablero.tablero[0][0].getCaracter_celda()).to eq ' '
     end
     
     it "Cargar minas en tablero con clase celda"do
         @tablero.generar_tablero_con_celda_nivel_basico()
         @tablero.generar_tablero_con_minas_con_celda()
-        expect(@tablero.tablero[1][1].caracter_celda).to eq '#'
+        expect(@tablero.tablero[1][1].getCaracter_celda()).to eq '#'
     end
 
     it "Crear usuario verificado" do
         @jugador=Jugador.new
-        expect(@jugador.nombre).to eq "Jugador_1"
+        @jugador.setNombre("Jugador_1")
+        expect(@jugador.getNombre()).to eq "Jugador_1"
     end
     it "Crear usuario verificado" do
         @tablero.generar_tablero_con_celda_nivel_basico()
         @tablero.cambiar_estado_celda(1,0)
-        expect(@tablero.tablero[1][0].estado_celda).to be true
+        expect(@tablero.tablero[1][0].getEstado_celda()).to be true
     end
     it "Crear bandera" do
         @tablero.generar_tablero_con_celda_nivel_basico()
-        expect(@tablero.tablero[1][0].estado_bandera).to be false
+        expect(@tablero.tablero[1][0].getEstado_bandera()).to be false
     end
     it "cambiar el estado de la variable estado_bandera " do
        
         @tablero.generar_tablero_con_celda_nivel_basico()
         @tablero.cambiar_estado_bandera(1,0)
-        expect(@tablero.tablero[1][0].estado_bandera).to be true
+        expect(@tablero.tablero[1][0].getEstado_bandera()).to be true
     end
     it "Verificar cantidad disponibles y crear banderas"do
         @tablero.generar_tablero_con_celda_nivel_basico()
@@ -95,11 +96,11 @@ RSpec.describe Tablero do
     end
     it "cambiar estado bandera a origen" do
         @tablero.generar_tablero_con_celda_nivel_basico()
-        expect(@tablero.tablero[2][4].estado_bandera).to be false
+        expect(@tablero.tablero[2][4].getEstado_bandera()).to be false
         @tablero.cambiar_estado_bandera(2,4)
-        expect(@tablero.tablero[2][4].estado_bandera).to be true
+        expect(@tablero.tablero[2][4].getEstado_bandera()).to be true
         @tablero.cambiar_estado_bandera_a_origen(2,4)
-        expect(@tablero.tablero[2][4].estado_bandera).to be false
+        expect(@tablero.tablero[2][4].getEstado_bandera()).to be false
     end
     it "Mostrar y cambiar valores de la clase cronometro" do
         expect(@cronometro.getTiempo()).to eq "000"
@@ -119,38 +120,44 @@ RSpec.describe Tablero do
         @tablero.generar_tablero_con_celda_nivel_basico()
         @tablero.generar_tablero_con_minas_con_celda()
         @tablero.verificar_lado_derecho(2,1)
-        expect(@tablero.tablero[2][1].caracter_celda).to eq "1"
+        expect(@tablero.tablero[2][1].getCaracter_celda()).to eq "1"
 
     end
     it "verificar si hay mina lado inferior" do
         @tablero.generar_tablero_con_celda_nivel_basico()
         @tablero.generar_tablero_con_minas_con_celda()
         @tablero.verificar_lado_inferior(2,1)
-        expect(@tablero.tablero[2][1].caracter_celda).to eq " "
+        expect(@tablero.tablero[2][1].getCaracter_celda()).to eq " "
 
     end
     it "verificar si hay mina lado inferior derecho" do
         @tablero.generar_tablero_con_celda_nivel_basico()
         @tablero.generar_tablero_con_minas_con_celda()
         @tablero.verificar_lado_inferior_derecho(2,1)
-        expect(@tablero.tablero[2][1].caracter_celda).to eq " "
+        expect(@tablero.tablero[2][1].getCaracter_celda()).to eq " "
 
     end
     it "verificar si hay mina lado inferior izquierdo" do
         @tablero.generar_tablero_con_celda_nivel_basico()
         @tablero.generar_tablero_con_minas_con_celda()
         @tablero.verificar_lado_inferior_izquierdo(2,1)
-        expect(@tablero.tablero[2][1].caracter_celda).to eq " "
+        expect(@tablero.tablero[2][1].getCaracter_celda()).to eq " "
 
     end    
     it "verificar si hay mina lado derecho y superior" do
         @tablero.generar_tablero_con_celda_nivel_basico()
         @tablero.generar_tablero_con_minas_con_celda()
         @tablero.verificar_lado_derecho(2,1)
-        expect(@tablero.tablero[2][1].caracter_celda).to eq "1"
+        expect(@tablero.tablero[2][1].getCaracter_celda()).to eq "1"
         @tablero.verificar_lado_superior(2,1)
-        expect(@tablero.tablero[2][1].caracter_celda).to eq "2"
-
-    end 
+        expect(@tablero.tablero[2][1].getCaracter_celda()).to eq "2"
+    end
+    
+    it"Verificar si en la posicion hay mina "do
+        @tablero.generar_tablero_con_celda_nivel_basico()
+        @tablero.generar_tablero_con_minas_con_celda()
+        expect(@tablero.verificar_mina(2,2)).to eq true
+    end
+    
     #Aleatorio
 end

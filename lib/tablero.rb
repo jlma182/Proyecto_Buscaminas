@@ -39,19 +39,19 @@ class Tablero
         @tablero[1][7]="#"
     end
     def generar_tablero_con_minas_con_celda()   
-        @tablero[0][0].caracter_celda=generar_mina()
-        @tablero[0][1].caracter_celda="#"
-        @tablero[0][2].caracter_celda="#"
-        @tablero[1][0].caracter_celda="#"
-        @tablero[1][1].caracter_celda="#"
-        @tablero[2][2].caracter_celda="#"
-        @tablero[3][3].caracter_celda="#"
-        @tablero[4][4].caracter_celda="#"
-        @tablero[7][7].caracter_celda="#"
-        @tablero[5][3].caracter_celda="#"
-        @tablero[2][5].caracter_celda="#"
-        @tablero[3][4].caracter_celda="#"
-        @tablero[1][7].caracter_celda="#"
+        @tablero[0][0].setCaracter_celda(generar_mina())
+        @tablero[0][1].setCaracter_celda("#")
+        @tablero[0][2].setCaracter_celda("#")
+        @tablero[1][0].setCaracter_celda("#")
+        @tablero[1][1].setCaracter_celda("#")
+        @tablero[2][2].setCaracter_celda("#")
+        @tablero[3][3].setCaracter_celda("#")
+        @tablero[4][4].setCaracter_celda("#")
+        @tablero[7][7].setCaracter_celda("#")
+        @tablero[5][3].setCaracter_celda("#")
+        @tablero[2][5].setCaracter_celda("#")
+        @tablero[3][4].setCaracter_celda("#")
+        @tablero[1][7].setCaracter_celda("#")
     end
 
     def cambiar_estado_celda(posicion_x,posicion_y) 
@@ -77,56 +77,56 @@ class Tablero
     #Segunda iteración
     def verificar_lado_derecho(x,y)
         if verificar_dentro_rango(x,y+1)          
-            if @tablero[x][y+1].caracter_celda=="#"
+            if @tablero[x][y+1].getCaracter_celda()=="#"
                 verificar_contenido(x,y)
             end
         end
     end
     def verificar_lado_inferior(x,y)
         if verificar_dentro_rango(x+1,y)     
-            if @tablero[x+1][y].caracter_celda=="#"
+            if @tablero[x+1][y].getCaracter_celda()=="#"
                 verificar_contenido(x,y)
             end
         end
     end
     def verificar_lado_izquierdo(x,y)
         if verificar_dentro_rango(x,y-1)     
-                if @tablero[x][y-1].caracter_celda=="#"
+                if @tablero[x][y-1].getCaracter_celda()=="#"
                     verificar_contenido(x,y)
                 end
         end
     end
     def verificar_lado_superior(x,y)
         if verificar_dentro_rango(x-1,y)   
-            if @tablero[x-1][y].caracter_celda=="#"
+            if @tablero[x-1][y].getCaracter_celda()=="#"
                 verificar_contenido(x,y)
             end
         end
     end
     def verificar_lado_superior_derecho(x,y)
         if verificar_dentro_rango(x-1,y+1)   
-                if @tablero[x-1][y+1].caracter_celda=="#"
+                if @tablero[x-1][y+1].getCaracter_celda()=="#"
                     verificar_contenido(x,y)
                 end
         end
     end
     def verificar_lado_superior_izquierdo(x,y)
         if verificar_dentro_rango(x-1,y-1)   
-            if @tablero[x-1][y-1].caracter_celda=="#" 
+            if @tablero[x-1][y-1].getCaracter_celda()=="#" 
                 verificar_contenido(x,y)
             end
         end
     end
     def verificar_lado_inferior_derecho(x,y)
         if verificar_dentro_rango(x+1,y+1)     
-                if @tablero[x+1][y+1].caracter_celda=="#"
+                if @tablero[x+1][y+1].getCaracter_celda()=="#"
                     verificar_contenido(x,y)
                 end
         end
     end
     def verificar_lado_inferior_izquierdo(x,y)
         if verificar_dentro_rango(x+1,y-1)     
-                if @tablero[x+1][y-1].caracter_celda=="#"
+                if @tablero[x+1][y-1].getCaracter_celda()=="#"
                     verificar_contenido(x,y)
                 end
         end
@@ -136,8 +136,9 @@ class Tablero
         return x>=0 && x<@columnas && y>=0 && y<@filas
     end 
     def verificar_contenido(x,y)
-        if @tablero[x][y].caracter_celda!="#" #&& @tablero[x][y].caracter_celda!="B"
-            @tablero[x][y].caracter_celda=(@tablero[x][y].caracter_celda.to_i+1).to_s 
+        if @tablero[x][y].getCaracter_celda()!="#" #&& @tablero[x][y].caracter_celda!="B"
+            a=@tablero[x][y].getCaracter_celda().to_i+1
+            @tablero[x][y].setCaracter_celda(a.to_s )
         end
     end 
     def verificar_filas_x_columnas(x,y)
@@ -165,5 +166,29 @@ class Tablero
         end
     end
 
+    def aleatorio_por_filas()
+        return rand(@filas)
+    end
+    def aleatorio_por_columnas()
+        return rand(@columnas)
+    end
+    def insert_minas_aleatoreamente(cant_minas)
+        i=0
+        c=cant_minas
+        while i<c
+                x=aleatorio_por_filas()
+                y=aleatorio_por_columnas()
+                if verificar_mina(x,y)
+                        c=c+1
+                else
+                        @tablero[x][y].setCaracter_celda(generar_mina())
+                end
+                i+=1
+        end
+        
+    end
+    def verificar_mina(x,y)
+        return  @tablero[x][y].getCaracter_celda()=="#"
+    end
     
 end

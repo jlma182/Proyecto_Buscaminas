@@ -1,16 +1,48 @@
-<h1>MOSTRAR TABLRERO</h1>
-<h1>Esta jugando:<input type= "text" name=Usuario value=<%=@nombre_usuario%>></h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    body 
+    { 
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-image: url('/images/b.jpeg');
+        background-size: 100% auto;
+    }
+    .content-prev {
+        background-color: rgba(200, 200, 200, 0.65);
+        width:500px;
+        height:auto;
+        margin:100px 0px 0px 0px;
+        padding:50px;
+        color:#333;
+        border:2px solid #C2D6FF;
+        border-radius:40px 0 40px 0;
+    }
+
+    h1{
+        color: darkblue;
+    }
+    </style>
+</head>
+
+<body>
+<h1><%= "Esta jugando:"+@nombre_usuario%></h1>
 <%@mostrar_tablero.each_with_index do |filas, i|%>
     <%filas.each_with_index do |columnas, j|%>
 
-        <% if @mostrar_tablero[i][j].estado_celda==true && @mostrar_tablero[i][j].estado_bandera==false%>
-                <input type="button" value=<%=@mostrar_tablero[i][j].caracter_celda%>>
+        <% if @mostrar_tablero[i][j].getEstado_celda()==true && @mostrar_tablero[i][j].getEstado_bandera()==false%>
+                <input type="button" value=<%=@mostrar_tablero[i][j].getCaracter_celda()%>>
         <% else %> 
-            <% if @mostrar_tablero[i][j].estado_bandera %>
+            <% if @mostrar_tablero[i][j].getEstado_bandera() %>
                 <input type="button" value="B">
             <% else %>
-                <!--<input type="button" value=<%=i.to_s+"-"+j.to_s%>>-->
-                <input type="button" value=<%=@mostrar_tablero[i][j].caracter_celda%>>
+                <input type="button" value=<%=i.to_s+"-"+j.to_s%>>
+                <!--<input type="button" value=<%=@mostrar_tablero[i][j].getCaracter_celda()%>>-->
             <% end %>
         <% end %>
     
@@ -42,4 +74,5 @@
         <input type='submit' value='REINICIAR PARTIDA'>
         <br>
     </form>
-
+</body>
+</html>
