@@ -1,13 +1,15 @@
 class Jugador
     attr_accessor :nombre
 
-    def getNombre()
+    def initialize
+        @nombre=" "
+    end
+
+    def obtener_nombre
         return @nombre
     end
-    def setNombre(nombre)
-        @nombre=nombre
+
+    def ingresar_nombre(n)
+        @nombre=n
     end
-    # def nombre
-    #     @nombre="Jugador_1"
-    # end
 end

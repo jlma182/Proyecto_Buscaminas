@@ -64,8 +64,8 @@ RSpec.describe Tablero do
 
     it "Crear usuario verificado" do
         @jugador=Jugador.new
-        @jugador.setNombre("Jugador_1")
-        expect(@jugador.getNombre()).to eq "Jugador_1"
+        @jugador.ingresar_nombre("Jugador_1")
+        expect(@jugador.obtener_nombre()).to eq "Jugador_1"
     end
     it "Crear usuario verificado" do
         @tablero.generar_tablero_con_celda_nivel_basico()
@@ -160,4 +160,14 @@ RSpec.describe Tablero do
     end
     
     #Aleatorio
+    it "nombre jugador vacio" do
+        nom=Jugador.new
+        expect(nom.obtener_nombre()).to eq " "
+    end
+
+    it "nombre jugador" do
+        nom=Jugador.new
+        nom.ingresar_nombre("pepito")
+        expect(nom.obtener_nombre()).to eq "pepito"
+    end
 end
