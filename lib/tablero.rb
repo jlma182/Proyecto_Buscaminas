@@ -2,7 +2,36 @@ require './lib/celda'
 class Tablero
     
     attr_accessor :filas, :columnas, :tablero, :cantidad_banderas
-
+    def getFilas()
+        return filas
+    end
+    def setFilas(fila)
+        @filas=fila
+    end
+    def getColumnas()
+        return @columnas
+    end
+    def setColumnas(columna)
+        @columnas=columna
+    end
+    def getTablero()
+        return @tablero
+    end
+    def getTablero_x_y(x,y)
+        return @tablero[x][y]
+    end
+    def setTablero(tablero)
+        self.tablero=tablero
+    end
+    def setTablero_x_y(tablero)
+        self.tablero=tablero
+    end
+    def getCantidad_banderas()
+        return @cantidad_banderas
+    end
+    def setCantidad_banderas(cantidad_bandera)
+        @cantidad_banderas=cantidad_bandera
+    end
     def generar_tablero_numerico()
         #columnas = Array.new(@columnas)
         #@tablero =Array.new(@filas){|i| columnas}
