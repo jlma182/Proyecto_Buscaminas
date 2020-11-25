@@ -1,6 +1,6 @@
 require 'sinatra'
-require './lib/tablero'
-require './lib/jugador'
+require 'tablero'
+require 'jugador'
 
 tablero_juego=Tablero.new
 jugador=Jugador.new
