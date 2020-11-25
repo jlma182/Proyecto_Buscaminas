@@ -39,11 +39,23 @@ class Tablero
     end 
 
     def generar_tablero_con_celda_nivel_basico()
-        @cantidad_banderas=0
+        @cantidad_banderas=10
         @filas=8
         @columnas=8
         @tablero= Array.new(filas) { Array.new(columnas) {celda=Celda.new} }
     end 
+    def generar_tablero_con_celda_nivel_intermedio()
+        @cantidad_banderas=40
+        @filas=16
+        @columnas=16
+        @tablero= Array.new(filas) { Array.new(columnas) {celda=Celda.new} }
+    end 
+    def generar_tablero_con_celda_nivel_personalizado(x,y,cantidad_mina,cantidad_bandera)  
+        @cantidad_banderas=cantidad_bandera
+        @filas=x
+        @columnas=y
+        @tablero= Array.new(filas) { Array.new(columnas) {celda=Celda.new}}
+    end
 
     def generar_mina()
         return '#'

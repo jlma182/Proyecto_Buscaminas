@@ -84,7 +84,6 @@ RSpec.describe Tablero do
     end
     it "Verificar cantidad disponibles y crear banderas"do
         @tablero.generar_tablero_con_celda_nivel_basico()
-        @tablero.setCantidad_banderas(10)
         expect(@tablero.getCantidad_banderas()).to be 10
         expect(@tablero.generar_bandera()).to eq 'B'
     end
@@ -205,5 +204,25 @@ RSpec.describe Tablero do
         nom=Jugador.new
         nom.setNombre("pepito")
         expect(nom.getNombre()).to eq "pepito"
+    end
+
+    it "Creacion de tablero intermedio" do
+        @tablero.generar_tablero_con_celda_nivel_intermedio()
+        expect(@tablero.getFilas()).to eq 16
+        expect(@tablero.getColumnas()).to eq 16
+        expect(@tablero.getCantidad_banderas()).to eq 40
+        expect(@tablero.getTablero_x_y(0,0).getEstado_bandera()).to eq false
+        expect(@tablero.getTablero_x_y(0,0).getEstado_celda()).to eq false
+        expect(@tablero.getTablero_x_y(0,0).getCaracter_celda()).to eq " "
+    end
+
+    it "Creacion del tablero personalizado" do
+    x=4
+    y=4
+    cantidad_minas=7
+    cantidad_banderas=5
+    @tablero.generar_tablero_con_celda_nivel_personalizado(x,y,cantidad_minas,cantidad_banderas)
+    expect(@tablero.getFilas()).to eq 4
+
     end
 end
