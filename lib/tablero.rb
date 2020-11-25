@@ -10,7 +10,7 @@ class Tablero
     end 
 
     def generar_tablero_con_celda_nivel_basico()
-        @cantidad_banderas=10
+        @cantidad_banderas=0
         @filas=8
         @columnas=8
         @tablero= Array.new(filas) { Array.new(columnas) {celda=Celda.new} }

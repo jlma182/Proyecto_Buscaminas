@@ -116,6 +116,12 @@ RSpec.describe Tablero do
 
     #Inicio de la segunda iteracion
     # para que pasese estar pruebas se debe seguir el esquema de generar_tablero_con_minas_con_celda() 
+    it "verificar si hay mina lado izquierdo" do
+        @tablero.generar_tablero_con_celda_nivel_basico()
+        @tablero.generar_tablero_con_minas_con_celda()
+        @tablero.verificar_lado_izquierdo(2,1)
+        expect(@tablero.tablero[2][1].getCaracter_celda()).to eq " "
+    end
     it "verificar si hay mina lado derecho" do
         @tablero.generar_tablero_con_celda_nivel_basico()
         @tablero.generar_tablero_con_minas_con_celda()
@@ -143,14 +149,36 @@ RSpec.describe Tablero do
         @tablero.verificar_lado_inferior_izquierdo(2,1)
         expect(@tablero.tablero[2][1].getCaracter_celda()).to eq " "
 
-    end    
-    it "verificar si hay mina lado derecho y superior" do
+    end
+    it "verificar si hay mina lado superior" do
+        @tablero.generar_tablero_con_celda_nivel_basico()
+        @tablero.generar_tablero_con_minas_con_celda()
+        @tablero.verificar_lado_superior(2,1)
+        expect(@tablero.tablero[2][1].getCaracter_celda()).to eq "1"
+    end
+    it "verificar si hay mina lado superior derecho" do
+        @tablero.generar_tablero_con_celda_nivel_basico()
+        @tablero.generar_tablero_con_minas_con_celda()
+        @tablero.verificar_lado_superior_derecho(2,1)
+        expect(@tablero.tablero[2][1].getCaracter_celda()).to eq " "
+
+    end  
+    it "verificar si hay mina lado superior izquierdo" do
+        @tablero.generar_tablero_con_celda_nivel_basico()
+        @tablero.generar_tablero_con_minas_con_celda()
+        @tablero.verificar_lado_superior_izquierdo(2,1)
+        expect(@tablero.tablero[2][1].getCaracter_celda()).to eq "1"
+
+    end  
+    it "verificar si hay mina lado derecho,lado superior izquierdo y superior segun el tablero precargado con posiciones fijas" do
         @tablero.generar_tablero_con_celda_nivel_basico()
         @tablero.generar_tablero_con_minas_con_celda()
         @tablero.verificar_lado_derecho(2,1)
         expect(@tablero.tablero[2][1].getCaracter_celda()).to eq "1"
         @tablero.verificar_lado_superior(2,1)
         expect(@tablero.tablero[2][1].getCaracter_celda()).to eq "2"
+        @tablero.verificar_lado_superior_izquierdo(2,1)
+        expect(@tablero.tablero[2][1].getCaracter_celda()).to eq "3"
     end
     
     it"Verificar si en la posicion hay mina "do
@@ -158,8 +186,14 @@ RSpec.describe Tablero do
         @tablero.generar_tablero_con_minas_con_celda()
         expect(@tablero.verificar_mina(2,2)).to eq true
     end
+    it "Verificar minas y saber cuantas hay al rededor" do
+        @tablero.generar_tablero_con_celda_nivel_basico()
+        @tablero.generar_tablero_con_minas_con_celda()
+        @tablero.verificar_filas_x_columnas(2,1)
+        expect(@tablero.tablero[2][1].getCaracter_celda()).to eq "3"
+
+    end
     
-    #Aleatorio
     it "nombre jugador vacio" do
         nom=Jugador.new
         expect(nom.getNombre()).to eq " "
