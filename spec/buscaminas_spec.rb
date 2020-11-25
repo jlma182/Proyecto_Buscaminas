@@ -160,4 +160,14 @@ RSpec.describe Tablero do
     end
     
     #Aleatorio
+    it "nombre jugador vacio" do
+        nom=Jugador.new
+        expect(nom.getNombre()).to eq " "
+    end
+
+    it "nombre jugador" do
+        nom=Jugador.new
+        nom.setNombre("pepito")
+        expect(nom.getNombre()).to eq "pepito"
+    end
 end

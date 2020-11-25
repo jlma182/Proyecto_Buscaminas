@@ -15,23 +15,47 @@
     }
     .content-prev {
         background-color: rgba(200, 200, 200, 0.65);
-        width:500px;
+        width:200px;
         height:auto;
-        margin:100px 0px 0px 0px;
-        padding:50px;
+        padding: 10px 10px 10px;
+        margin:45px 0px 0px 0px;
+
         color:#333;
         border:2px solid #C2D6FF;
-        border-radius:40px 0 40px 0;
+        position: relative;
+        left: 50px;
     }
 
     h1{
         color: darkblue;
     }
+
+    .numeros-mat{
+        position: absolute;
+        top: 65px; left: 80px;
+        size=4px
+    }
+
+    .numeros2-mat{
+        position: absolute;
+        top: 95px; left: 35px;
+    }
     </style>
 </head>
 
+
 <body>
 <h1><%= "Esta jugando:"+@nombre_usuario%></h1>
+<div class="numeros-mat">
+<pre><p><font size="5"><strong>0 1 2 3 4 5 6 7</strong></font></p></pre>
+
+</div>
+<div class="numeros2-mat">
+<h3>0<br /> 1<br />2 <br />3 <br />4 <br />5 <br />6 <br />7 <br />
+</h3>
+</div>
+
+<div class="content-prev">
 <%@mostrar_tablero.each_with_index do |filas, i|%>
     <%filas.each_with_index do |columnas, j|%>
 
@@ -41,36 +65,80 @@
             <% if @mostrar_tablero[i][j].getEstado_bandera() %>
                 <input type="button" value="B">
             <% else %>
-                <input type="button" value=<%=i.to_s+"-"+j.to_s%>>
+                <input type="button" value=" ">
                 <!--<input type="button" value=<%=@mostrar_tablero[i][j].getCaracter_celda()%>>-->
             <% end %>
         <% end %>
-    
     <%end%>
     <br/>
 <%end%>
-<br>
+ </div>
+
 <form method='post' action='/obteneryandx'>
     <h4>Sector para destapar una casilla</h4>
-    <label>Eje X <input type="text" required="required" name=X></label>
-    <label>Eje Y <input type="text" required="required" name=Y></label>
+<p>
+    Eje X:
+    <select name=X>
+      <option>0</option>
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+    </select>
+    &nbsp
+    Eje Y:
+    <select name=Y>
+      <option>0</option>
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+    </select>
     <input type="submit" value="Enviar">
     <input type= "hidden" name=Usuario value=<%=@nombre_usuario%>>
+    </p>
+    
 </form>
 <form method='post' action='/disminuir_contador_bandera'>
     <h4>Sector de poner banderas</h4>    
-    <label>Eje X <input type="text" required="required" name=X></label>
-    <label>Eje Y <input type="text" required="required" name=Y></label>
+    <p>
+    Eje X:
+    <select name=X>
+      <option>0</option>
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+    </select>
+    &nbsp
+    Eje Y:
+    <select name=Y>
+      <option>0</option>
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+    </select>
     <input type="submit" value="poner_bandera">
     <br>
     <input type="hidden" name=Usuario value=<%=@nombre_usuario%>>
-    
+    </p>
 </form>
 
 <form method='post' action='formato'>
-        
         <br>
-
         <input type='submit' value='REINICIAR PARTIDA'>
         <br>
     </form>

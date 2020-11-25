@@ -4,7 +4,6 @@ require './lib/jugador'
 
 tablero_juego=Tablero.new
 jugador=Jugador.new
-jugador.setNombre("Jugador_1")
 get '/' do
     erb :pantallainicio
 end
