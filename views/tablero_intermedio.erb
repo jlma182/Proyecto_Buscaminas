@@ -55,7 +55,7 @@
 <pre><p><font size="5"><strong>0 1 2 3 4 5 6 7</strong></font></p></pre>
 
 </div>-->
-<h1><%= "Esta jugando:"+@nombre_usuario%></h1>
+<h1><%= "Esta jugando:"+@nombre_usuario%>  <%= "Banderas: "+@banderas_disponibles.to_s%></h1>
 <div class="numeros-mat">
 <pre><p><font size="5"><strong><%=perro%></strong></font></p></pre>
 
@@ -127,7 +127,7 @@
     </p>
     
 </form>
-<form method='post' action='/disminuir_contador_bandera'>
+<form method='post' action='/disminuir_contador_bandera_2'>
     <h4>Sector de poner banderas</h4>    
     <p>
     Eje X:
