@@ -15,6 +15,25 @@
     </style>
 </head>
 <body>
-<h1>Pantalla cant minas banderas DEL NIVEL PERSONALIZADO</h1>
+<h1> Tablero: </h1>
+    <h2>- ES UN TABLRERO PERSONALIZADO Y CORRESPONDE AL NIVEL PERSONALIZADO</H2>
+    <h2>- Tienes X banderas</h2>
+    <h2>- En el tablero existe X/ (1/3) minas</h2>
+    
+    <center><form method='get' action='/'>
+        <input type="submit" value='volver al inicio'>
+    </form><center>
+    <br>
+    <!--<label>INGRESE SU NOMBRE: <input type="text" name=Usuario ></label>-->
+    <br>
+    <form method='get' action='/formatoPjuego'>
+        INGRESE SU NOMBRE: <input type="text" name='nombre'>
+        INGRESE NUMERO DE FILAS: <input type="text" name='fila'>
+        INGRESE NUMERO DE COLUMNAS: <input type="text" name='columna'>
+        INGRESE NUMERO DE MINAS: <input type="text" name='mina'>
+        INGRESE NUMERO DE BANDERAS: <input type="text" name='bandera'>
+        <center><input type="submit" value='JUGAR !!'><center>
+    </form>
+    </div>
 </body>
 </html>
