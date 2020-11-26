@@ -81,19 +81,19 @@ get '/formato2juego' do
     tablero_juego.precargar_numeros()
     @mostrar_tablero=tablero_juego.tablero
     
-    erb :tablero
+    erb :tablero_intermedio
 end
 
-post '/formatoPjuego' do
+get '/formatoPjuego' do
     @nombre_usuario=params[:nombre]
-    @filas=params[:fila]
-    @columnas=params[:columna]
-    @minas=params[:mina]
-    @banderas=params[:bandera]
-    #tablero_juego.generar_tablero_con_celda_nivel_intermedio()
-    #tablero_juego.insert_minas_aleatoreamente(40)
-    #tablero_juego.precargar_numeros()
+    filas=params[:fila].to_i
+    columnas=params[:columna].to_i
+    minas=params[:mina].to_i
+    banderas=params[:bandera].to_i
+    tablero_juego.generar_tablero_con_celda_nivel_personalizado(filas,columnas,banderas)
+    tablero_juego.insert_minas_aleatoreamente(minas)
+    tablero_juego.precargar_numeros()
     @mostrar_tablero=tablero_juego.tablero
     
-    erb :tablero
+    erb :tablero_personalizado
 end

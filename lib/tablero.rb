@@ -50,7 +50,7 @@ class Tablero
         @columnas=16
         @tablero= Array.new(filas) { Array.new(columnas) {celda=Celda.new} }
     end 
-    def generar_tablero_con_celda_nivel_personalizado(x,y,cantidad_mina,cantidad_bandera)  
+    def generar_tablero_con_celda_nivel_personalizado(x,y,cantidad_bandera)  
         @cantidad_banderas=cantidad_bandera
         @filas=x
         @columnas=y
@@ -174,7 +174,7 @@ class Tablero
     end
 
     def verificar_dentro_rango(x,y)
-        return x>=0 && x<@columnas && y>=0 && y<@filas
+        return x>=0 && x<@filas && y>=0 && y<@columnas
     end 
     def verificar_contenido(x,y)
         if @tablero[x][y].getCaracter_celda()!="#" #&& @tablero[x][y].caracter_celda!="B"

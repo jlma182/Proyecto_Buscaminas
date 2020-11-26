@@ -219,9 +219,8 @@ RSpec.describe Tablero do
     it "Creacion del tablero personalizado" do
     x=4
     y=4
-    cantidad_minas=7
     cantidad_banderas=5
-    @tablero.generar_tablero_con_celda_nivel_personalizado(x,y,cantidad_minas,cantidad_banderas)
+    @tablero.generar_tablero_con_celda_nivel_personalizado(x,y,cantidad_banderas)
     expect(@tablero.getFilas()).to eq 4
 
     end
