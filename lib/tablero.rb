@@ -31,19 +31,19 @@ class Tablero
     end
     def setCantidad_banderas(cantidad_bandera)
         @cantidad_banderas=cantidad_bandera
-    end
-    def generar_tablero_numerico()
-        #columnas = Array.new(@columnas)
-        #@tablero =Array.new(@filas){|i| columnas}
-        @tablero= Array.new(filas) { Array.new(columnas) {0} }
     end 
-
+    def generar_tablero_con_celda(x,y,cantidad_bandera)  
+        @cantidad_banderas=cantidad_bandera
+        @filas=x
+        @columnas=y
+        @tablero= Array.new(filas) { Array.new(columnas) {celda=Celda.new}}
+    end
     def generar_tablero_con_celda_nivel_basico()
         @cantidad_banderas=10
         @filas=8
         @columnas=8
         @tablero= Array.new(filas) { Array.new(columnas) {celda=Celda.new} }
-    end 
+    end
     def generar_tablero_con_celda_nivel_intermedio()
         @cantidad_banderas=40
         @filas=16
@@ -57,30 +57,8 @@ class Tablero
         @tablero= Array.new(filas) { Array.new(columnas) {celda=Celda.new}}
     end
 
-    def generar_mina()
-        return '#'
-    end
-
-    def generar_bandera()
-        return'B'
-    end
-    def generar_tablero_con_minas()   
-        @tablero[0][0]=generar_mina()
-        @tablero[0][1]="2"
-        @tablero[0][2]="0"
-        @tablero[1][0]="2"
-        @tablero[1][1]="#"
-        @tablero[2][2]="#"
-        @tablero[3][3]="#"
-        @tablero[4][4]="#"
-        @tablero[7][7]="#"
-        @tablero[5][3]="#"
-        @tablero[2][1]="#"
-        @tablero[3][4]="#"
-        @tablero[1][7]="#"
-    end
     def generar_tablero_con_minas_con_celda()   
-        @tablero[0][0].setCaracter_celda(generar_mina())
+        @tablero[0][0].setCaracter_celda("#")
         @tablero[0][1].setCaracter_celda("#")
         @tablero[0][2].setCaracter_celda("#")
         @tablero[1][0].setCaracter_celda("#")
@@ -96,7 +74,7 @@ class Tablero
     end
 
     def cambiar_estado_celda(posicion_x,posicion_y) 
-        @tablero[posicion_x][posicion_y].cambiar_estado_celda()
+        @tablero[posicion_x][posicion_y].setEstado_celda(true)
     end
 
     def cambiar_estado_bandera(posicion_x,posicion_y) 
@@ -222,7 +200,7 @@ class Tablero
                 if verificar_mina(x,y)
                         c=c+1
                 else
-                        @tablero[x][y].setCaracter_celda(generar_mina())
+                        @tablero[x][y].setCaracter_celda("#")
                 end
                 i+=1
         end

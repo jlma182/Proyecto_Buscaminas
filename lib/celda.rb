@@ -23,8 +23,8 @@ class Celda
     def cambiar_estado_bandera_a_origen()
         @estado_bandera=false
     end
-    def cambiar_estado_celda()
-        @estado_celda=true
+    def setEstado_celda(estado_celda)
+        @estado_celda=estado_celda
     end
     
 

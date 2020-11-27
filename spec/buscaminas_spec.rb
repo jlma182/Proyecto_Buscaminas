@@ -8,85 +8,42 @@ RSpec.describe Tablero do
             @celda=Celda.new
             @cronometro=Cronometro.new}
 
-    it "establecer tablero 8*8" do
+    it "Cuando creo el tablero deberia poder mandar y obtener
+     valores de filas y columna" do
 
-        @tablero.filas=8
-        @tablero.columnas=8
-
-        expect(@tablero.filas).to eq 8
-        expect(@tablero.columnas).to eq 8        
-    end
-    
-    it "Generar tablero 8*8" do
-
-        @tablero.filas=8
-        @tablero.columnas=8
-        @tablero.generar_tablero_numerico()
-        expect(@tablero.tablero)
-        
+        @tablero.setFilas(8)
+        @tablero.setColumnas(8)
+        expect(@tablero.getFilas()).to eq 8
+        expect(@tablero.getColumnas()).to eq 8        
     end
 
-    it "Deberia crear y mostrar mina" do
-        expect(@tablero.generar_mina()).to eq '#'    
-    end
-    
-    it "Genera tablero numerico con minas" do
-       
-        @tablero.filas=8
-        @tablero.columnas=8
-        @tablero.generar_tablero_numerico()
-        @tablero.generar_tablero_con_minas()
-        expect(@tablero.getTablero_x_y(6,7)).to eq 0
-
-    end
-
-    it "Crear clase celda y verificar los atributos" do
+    it "Una celda deberia tener un estado y un caracter para comenzar" do
         expect(@celda.getCaracter_celda()).to eq ' '
         expect(@celda.getEstado_celda()).to be false
     end
 
-    it "Vericar el atributo estado de celda y cambiar dicho estado del atributo" do
-        expect(@celda.getEstado_celda()).to be false
-        @celda.cambiar_estado_celda()
-        expect(@celda.getEstado_celda()).to be true
-    end
-
-    it "Crear tablero con clase celda "do
-        @tablero.generar_tablero_con_celda_nivel_basico()
+    it "Al crear tablero del nivel basico y elegir una posicion se deberia mostrar espacio en blanco"do
+        @tablero.generar_tablero_con_celda(8,8,10)
         expect(@tablero.getTablero_x_y(0,0).getCaracter_celda()).to eq ' '
     end
     
-    it "Cargar minas en tablero con clase celda"do
-        @tablero.generar_tablero_con_celda_nivel_basico()
+    it "Al asignar la minas definidas al tablero y escoger una de esas posiciones daria como resultado una mina "do
+        @tablero.generar_tablero_con_celda(8,8,10)
         @tablero.generar_tablero_con_minas_con_celda()
         expect(@tablero.getTablero_x_y(1,1).getCaracter_celda()).to eq '#'
     end
 
-    it "Crear usuario verificado" do
-        @jugador=Jugador.new
-        @jugador.setNombre("Jugador_1")
-        expect(@jugador.getNombre()).to eq "Jugador_1"
-    end
-    it "Crear usuario verificado" do
-        @tablero.generar_tablero_con_celda_nivel_basico()
-        @tablero.cambiar_estado_celda(1,0)
-        expect(@tablero.getTablero_x_y(1,0).getEstado_celda()).to be true
-    end
-    it "Crear bandera" do
-        @tablero.generar_tablero_con_celda_nivel_basico()
-        expect(@tablero.getTablero_x_y(1,0).getEstado_bandera()).to be false
-    end
     it "cambiar el estado de la variable estado_bandera " do
        
         @tablero.generar_tablero_con_celda_nivel_basico()
         @tablero.cambiar_estado_bandera(1,0)
         expect(@tablero.getTablero_x_y(1,0).getEstado_bandera()).to be true
     end
-    it "Verificar cantidad disponibles y crear banderas"do
-        @tablero.generar_tablero_con_celda_nivel_basico()
-        expect(@tablero.getCantidad_banderas()).to be 10
-        expect(@tablero.generar_bandera()).to eq 'B'
+    it "Cuando creo tablero nivel basico deberia tener 10 banderas" do
+        @tablero.generar_tablero_con_celda_nivel_basico()#arrange
+        expect(@tablero.getCantidad_banderas()).to be 10 # assert 
     end
+
     it "Crear aumento y disminucion de la variable cantidad_banderas" do
         @tablero.generar_tablero_con_celda_nivel_basico()
         @tablero.setCantidad_banderas(10)
