@@ -14,7 +14,6 @@ post '/escogerNivel' do
 end
 
 post '/formato' do
-    
     erb:condicion
 end
 post '/formato2' do
@@ -26,7 +25,7 @@ end
 get '/juego' do
     
     @nombre_usuario=params[:nombre]
-    tablero_juego.generar_tablero_con_celda_nivel_basico()
+    tablero_juego.generar_tablero_con_celda_nivel_personalizado(8,8,10)
     tablero_juego.insert_minas_aleatoreamente(10)
     tablero_juego.precargar_numeros()
     @mostrar_tablero=tablero_juego.tablero
