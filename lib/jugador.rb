@@ -10,7 +10,4 @@ class Jugador
     def setNombre(nombre)
         self.nombre=nombre
     end
-    # def nombre
-    #     @nombre="Jugador_1"
-    # end
 end
