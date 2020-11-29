@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    table, th, td 
+    {
+        border: 1px solid black;
+    }
+    table 
+    {
+        border-collapse: collapse;
+        background-size: 100% 100%;
+        width: 50%;
+    }
+    tr:hover
+    {
+        background-color: #ffff99;
+    }
+    td {
+        text-align: center;
+    }
+    body 
+    { 
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-image: url('/images/b.jpeg');
+        background-size: 100% auto;
+    }
+    .content-prev {
+        background-color: rgba(200, 200, 200, 0.65);
+        width:700px;
+        height:auto;
+        padding: 10px 10px 10px;
+        margin:45px 0px 0px 0px;
+
+        color:#333;
+        border:2px solid #C2D6FF;
+        position: relative;
+        left: 50px;
+    }
+
+    h1{
+        color: darkblue;
+    }
+
+    .numeros-mat{
+        position: absolute;
+        top: 65px; left: 80px;
+        size=4px
+    }
+
+    .numeros2-mat{
+        position: absolute;
+        top: 95px; left: 35px;
+    }
+    </style>
+</head>
+<body>
+<h1><%= "El jugador:"+@nombre_usuario +" perdio"%> </h1>
+<h1>x: <%=@X%> y: <%=@Y%> </h1>
+<table class="egt">
+  <tr>
+    <td>X/Y</td>
+    <% for m in 0..@Y-1 do %>  
+    <th scope="col"><%=m+1%></th>
+    <% end %>
+  </tr>
+  <% for n in 0..@X-1 do %>
+  <tr>
+    <th scope="row"><%= n+1%></th>
+    <% for k in 0..@Y-1 do %>
+   <!-- <td>
+        <% if @mostrar_tablero[n][k].getEstado_celda()==true && @mostrar_tablero[n][k].getEstado_bandera()==false%>
+                <%=@mostrar_tablero[n][k].getCaracter_celda()%>
+        <% else %> 
+            <% if @mostrar_tablero[n][k].getEstado_bandera() %>
+                <%="B"%>  
+            <% else %>
+                <%=" "%>
+            <% end %>
+        <% end %>
+    </td>-->
+    <td><%=@mostrar_tablero[n][k].getCaracter_celda()%></td>
+   <!--<th><%= k.to_s+"-"+n.to_s%></th>-->
+    <% end %>
+    <% end %>
+  </tr>
+  <tr>  
+ </table>
+ <form method='post' action='/escogerNivel'>
+        <br>
+        <input type='submit' value='Reiniciar partida'>
+        <br>
+ </form>
+</body>

@@ -17,11 +17,11 @@ class Celda
     def getEstado_bandera()
         return @estado_bandera
     end
-    def cambiar_estado_bandera()
-        @estado_bandera=true
+    def setEstado_bandera(estado_bandera)
+        @estado_bandera=estado_bandera
     end
-    def cambiar_estado_bandera_a_origen()
-        @estado_bandera=false
+    def cambiar_estado_bandera_a_origen(estado_bandera)
+        @estado_bandera=estado_bandera
     end
     def setEstado_celda(estado_celda)
         @estado_celda=estado_celda

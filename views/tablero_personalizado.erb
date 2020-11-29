@@ -45,56 +45,56 @@
 
 
 <body>
-<%perro=""%>
-<%@mostrar_tablero.each_with_index do |filas,p|%>
-    <%perro=perro+(p+1).to_s+" "%>
-<%end%>
-
+<%filas=@X-1%>
+<%columnas=@Y-1%>
 <h1><%= "Esta jugando:"+@nombre_usuario%>  <%= "Banderas: "+@banderas_disponibles.to_s%></h1>
 <div class="numeros-mat">
-<pre><p><font size="5"><strong><%=perro%></strong></font></p></pre>
 
-</div>
-<div class="numeros2-mat">
-<h3>
-<%@mostrar_tablero.each_with_index do |filas,p|%>
-    <%=(p+1).to_s%><br /> 
-<%end%>
-</h3>
-</div>
 <div class="content-prev">
-<%@mostrar_tablero.each_with_index do |filas, i|%>
-    <%filas.each_with_index do |columnas, j|%>
-
-        <% if @mostrar_tablero[i][j].getEstado_celda()==true && @mostrar_tablero[i][j].getEstado_bandera()==false%>
-                <input type="button" value=<%=@mostrar_tablero[i][j].getCaracter_celda()%>>
+    <table class="egt">
+  <tr>
+    <td>X/Y</td>
+    <% for m in 0..columnas do %>  
+    <th scope="col"><%=m+1%></th>
+    <% end %>
+  </tr>
+  <% for n in 0..filas do %>
+  <tr>
+    <th scope="row"><%= n+1%></th>
+    <% for k in 0..columnas do %>
+   <td>
+        <% if @mostrar_tablero[n][k].getEstado_celda()==true && @mostrar_tablero[n][k].getEstado_bandera()==false%>
+                <%=@mostrar_tablero[n][k].getCaracter_celda()%>
         <% else %> 
-            <% if @mostrar_tablero[i][j].getEstado_bandera() %>
-                <input type="button" value="B">
+            <% if @mostrar_tablero[n][k].getEstado_bandera() %>
+                <%="B"%>  
             <% else %>
-                <input type="button" value=" ">
-                <!--<input type="button" value=<%=@mostrar_tablero[i][j].getCaracter_celda()%>>-->
+                <%=" "%>
             <% end %>
         <% end %>
-    <%end%>
-    <br/>
-<%end%>
- </div>
-
-<form method='post' action='/obteneryandx'>
+    </td>
+    <!--<td><%=@mostrar_tablero[n][k].getCaracter_celda()%></td>
+   <th><%= k.to_s+"-"+n.to_s%></th>-->
+    <% end %>
+    <% end %>
+  </tr>
+  <tr>  
+ </table>
+</div>
+<form method='post' action='/obteneryandx_P'>
     <h4>Sector para destapar una casilla</h4>
 <p>
     Eje X:
     <select name=X>
-    <%@mostrar_tablero.each_with_index do |filas,p|%>
-    <option><%=(p+1).to_s%></option>
+    <% for k in 0..filas do %>
+    <option><%=k+1%></option>
     <%end%>
     </select>
     &nbsp
     Eje Y:
     <select name=Y>
-    <%@mostrar_tablero.each_with_index do |filas,p|%>
-    <option><%=(p+1).to_s%></option>
+    <% for n in 0..columnas do %>
+    <option><%=n+1%></option>
     <%end%>
     </select>
     <input type="submit" value="Enviar">
@@ -104,23 +104,22 @@
 </form>
 <form method='post' action='/disminuir_contador_bandera_P'>
     <h4>Sector de poner banderas</h4>    
-    <p>
+ <p>
     Eje X:
     <select name=X>
-    <%@mostrar_tablero.each_with_index do |filas,p|%>
-    <option><%=(p+1).to_s%></option>
+    <% for k in 0..filas do %>
+    <option><%=k+1%></option>
     <%end%>
     </select>
     &nbsp
     Eje Y:
     <select name=Y>
-    <%@mostrar_tablero.each_with_index do |filas,p|%>
-    <option><%=(p+1).to_s%></option>
+    <% for n in 0..columnas do %>
+    <option><%=n+1%></option>
     <%end%>
     </select>
-    <input type="submit" value="poner_bandera">
-    <br>
-    <input type="hidden" name=Usuario value=<%=@nombre_usuario%>>
+    <input type="submit" value="Enviar">
+    <input type= "hidden" name=Usuario value=<%=@nombre_usuario%>>
     </p>
 </form>
 

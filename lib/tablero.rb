@@ -78,10 +78,10 @@ class Tablero
     end
 
     def cambiar_estado_bandera(posicion_x,posicion_y) 
-        @tablero[posicion_x][posicion_y].cambiar_estado_bandera()
+        @tablero[posicion_x][posicion_y].setEstado_bandera(true)
     end
     def cambiar_estado_bandera_a_origen(posicion_x,posicion_y) 
-        @tablero[posicion_x][posicion_y].cambiar_estado_bandera_a_origen()
+        @tablero[posicion_x][posicion_y].setEstado_bandera(false)
     end
     def disminuir_cantidad_banderas_en_uno()
         if(@cantidad_banderas>0 && @cantidad_banderas<=10)

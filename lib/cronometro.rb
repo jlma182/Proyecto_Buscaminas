@@ -21,16 +21,21 @@ class Cronometro
         while i< 10 do 
             if estado_cronometro
                 u=u+1
-                if(d==10)
-                    d=d+1
-                else
-                
-                end
             else
-                
+                if(d==10)
+                    u=0
+                    d=0
+                    c=c+1
+                else
+                    if(c==10)
+                        u=9
+                        d=9
+                        c=9
+        
+                    end
+                end
             end
             i=i+1
         end
     end
-    
 end

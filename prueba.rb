@@ -34,3 +34,23 @@ while (i<999) do
     puts(c.to_s+d.to_s+u.to_s)
     i=i+1
 end
+
+
+<div class="content-prev">
+<%@mostrar_tablero.each_with_index do |filas, i|%>
+    <%filas.each_with_index do |columnas, j|%>
+
+        <% if @mostrar_tablero[i][j].getEstado_celda()==true && @mostrar_tablero[i][j].getEstado_bandera()==false%>
+                <input type="button" value=<%=@mostrar_tablero[i][j].getCaracter_celda()%>>
+        <% else %> 
+            <% if @mostrar_tablero[i][j].getEstado_bandera() %>
+                <input type="button" value="B">
+            <% else %>
+                <input type="button" value=" ">
+                <!--<input type="button" value=<%=@mostrar_tablero[i][j].getCaracter_celda()%>>-->
+            <% end %>
+        <% end %>
+    <%end%>
+    <br/>
+<%end%>
+ </div>
