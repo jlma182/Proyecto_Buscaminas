@@ -19,19 +19,13 @@ post '/formato' do
     erb:condicion
 end
 post '/formato2' do
-    # @JugadorX=jugador.getNombre()
-    # erb:condicion
+    
     jugador=Jugador.new
-    # @juga1=jugador.setNombre((params[:nombre]))
-    # @juga2=params[:nombre]
     erb:condicion2
 end
 post '/formatoP' do
-    # @JugadorX=jugador.getNombre()
-    # erb:condicion
+
     jugador=Jugador.new
-    # @juga1=jugador.setNombre((params[:nombre]))
-    # @juga2=params[:nombre]
     erb:condicionP
 end
 get '/juego' do
@@ -107,9 +101,22 @@ get '/formatoPjuego' do
     columnas=params[:columna].to_i
     minas=params[:mina].to_i
     banderas=params[:bandera].to_i
+    
     tablero_juego.generar_tablero_con_celda_nivel_personalizado(filas,columnas,banderas)
+    @res=tablero_juego.getColumnas()
     tablero_juego.insert_minas_aleatoreamente(minas)
     tablero_juego.precargar_numeros()
+    
+    @mostrar_tablero=tablero_juego.tablero
+    @banderas_disponibles=tablero_juego.getCantidad_banderas()
+    erb :tablero_personalizado
+end
+
+post '/obteneryandxP' do
+    x=params[:X].to_i
+    y=params[:Y].to_i
+    @nombre_usuario=params[:Usuario]
+    tablero_juego.cambiar_estado_celda(x-1,y-1)    
     @mostrar_tablero=tablero_juego.tablero
     @banderas_disponibles=tablero_juego.getCantidad_banderas()
     erb :tablero_personalizado

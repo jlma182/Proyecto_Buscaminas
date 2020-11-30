@@ -45,32 +45,17 @@
 
 
 <body>
-<%perro=""%>
-<%@mostrar_tablero.each_with_index do |filas,p|%>
-    <%perro=perro+(p+1).to_s+" "%>
-<%end%>
 
-<!--<h1><%= "Esta jugando:"+@nombre_usuario%></h1>
-<div class="numeros-mat">
-<pre><p><font size="5"><strong>0 1 2 3 4 5 6 7</strong></font></p></pre>
-
-</div>-->
 <h1><%= "Esta jugando:"+@nombre_usuario%>  <%= "Banderas: "+@banderas_disponibles.to_s%></h1>
 <div class="numeros-mat">
-<pre><p><font size="5"><strong><%=perro%></strong></font></p></pre>
+<pre><p><font size="5"><strong>1 2 3 4 5 6 7 8</strong></font></p></pre>
+</div>
 
-</div>
-<!--<div class="numeros2-mat">
-<h3>0<br /> 1<br />2 <br />3 <br />4 <br />5 <br />6 <br />7 <br />
-</h3>
-</div>-->
 <div class="numeros2-mat">
-<h3>
-<%@mostrar_tablero.each_with_index do |filas,p|%>
-    <%=(p+1).to_s%><br /> 
-<%end%>
+<h3>1<br /> 2<br />3 <br />4 <br />5 <br />6 <br />7 <br />8 <br />
 </h3>
 </div>
+
 <div class="content-prev">
 <%@mostrar_tablero.each_with_index do |filas, i|%>
     <%filas.each_with_index do |columnas, j|%>
@@ -93,34 +78,18 @@
 <form method='post' action='/obteneryandx'>
     <h4>Sector para destapar una casilla</h4>
 <p>
-    Eje X:
+    FILA:
     <select name=X>
     <%@mostrar_tablero.each_with_index do |filas,p|%>
     <option><%=(p+1).to_s%></option>
     <%end%>
-      <!--<option>0</option>
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-      <option>6</option>
-      <option>7</option>-->
     </select>
     &nbsp
-    Eje Y:
+    COLUMNA:
     <select name=Y>
     <%@mostrar_tablero.each_with_index do |filas,p|%>
     <option><%=(p+1).to_s%></option>
     <%end%>
-      <!--<option>0</option>
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-      <option>6</option>
-      <option>7</option>-->
     </select>
     <input type="submit" value="Enviar">
     <input type= "hidden" name=Usuario value=<%=@nombre_usuario%>>
@@ -130,34 +99,18 @@
 <form method='post' action='/disminuir_contador_bandera'>
     <h4>Sector de poner banderas</h4>    
     <p>
-    Eje X:
+    FILA:
     <select name=X>
     <%@mostrar_tablero.each_with_index do |filas,p|%>
     <option><%=(p+1).to_s%></option>
     <%end%>
-      <!--<option>0</option>
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-      <option>6</option>
-      <option>7</option>-->
     </select>
     &nbsp
-    Eje Y:
+    COLUMNA:
     <select name=Y>
     <%@mostrar_tablero.each_with_index do |filas,p|%>
     <option><%=(p+1).to_s%></option>
     <%end%>
-      <!--<option>0</option>
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-      <option>6</option>
-      <option>7</option>-->
     </select>
     <input type="submit" value="poner_bandera">
     <br>

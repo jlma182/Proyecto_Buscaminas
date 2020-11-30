@@ -14,16 +14,20 @@
         background-size: 100% auto;
     }
     .content-prev {
-        background-color: rgba(200, 200, 200, 0.65);
-        width:600px;
+        width:785px;
         height:auto;
-        padding: 10px 10px 10px;
+        padding: 10px 21px 10px;
         margin:45px 0px 0px 0px;
-
         color:#333;
-        border:2px solid #C2D6FF;
+        border:1px solid #C2D6FF;
         position: relative;
         left: 50px;
+    }
+
+    .content-box{
+        background-color: rgba(200, 200, 200, 0.65);
+        width:350px;
+        margin:-300px 0px -100px 900px;
     }
 
     h1{
@@ -43,27 +47,18 @@
     </style>
 </head>
 
-
 <body>
-<%perro=""%>
-<%@mostrar_tablero.each_with_index do |filas,p|%>
-    <%perro=perro+(p+1).to_s+" "%>
+<%iterador=""%>
+<%@mostrar_tablero[0].each_with_index do |columnas,p|%>
+    <%iterador=iterador+(p+1).to_s+" "%>
 <%end%>
 
-<!--<h1><%= "Esta jugando:"+@nombre_usuario%></h1>
-<div class="numeros-mat">
-<pre><p><font size="5"><strong>0 1 2 3 4 5 6 7</strong></font></p></pre>
-
-</div>-->
 <h1><%= "Esta jugando:"+@nombre_usuario%>  <%= "Banderas: "+@banderas_disponibles.to_s%></h1>
-<div class="numeros-mat">
-<pre><p><font size="5"><strong><%=perro%></strong></font></p></pre>
 
+<div class="numeros-mat">
+<pre><p><font size="5"><strong><%=iterador%></strong></font></p></pre>
 </div>
-<!--<div class="numeros2-mat">
-<h3>0<br /> 1<br />2 <br />3 <br />4 <br />5 <br />6 <br />7 <br />
-</h3>
-</div>-->
+
 <div class="numeros2-mat">
 <h3>
 <%@mostrar_tablero.each_with_index do |filas,p|%>
@@ -71,6 +66,8 @@
 <%end%>
 </h3>
 </div>
+
+
 <div class="content-prev">
 <%@mostrar_tablero.each_with_index do |filas, i|%>
     <%filas.each_with_index do |columnas, j|%>
@@ -90,37 +87,22 @@
 <%end%>
  </div>
 
-<form method='post' action='/obteneryandx'>
+<div class="content-box">
+<form method='post' action='/obteneryandxP'>
     <h4>Sector para destapar una casilla</h4>
 <p>
-    Eje X:
+    FILA:
     <select name=X>
     <%@mostrar_tablero.each_with_index do |filas,p|%>
     <option><%=(p+1).to_s%></option>
     <%end%>
-      <!--<option>0</option>
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-      <option>6</option>
-      <option>7</option>-->
     </select>
     &nbsp
-    Eje Y:
+    COLUMNA:
     <select name=Y>
-    <%@mostrar_tablero.each_with_index do |filas,p|%>
+    <%@mostrar_tablero[0].each_with_index do |filas,p|%>
     <option><%=(p+1).to_s%></option>
     <%end%>
-      <!--<option>0</option>
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-      <option>6</option>
-      <option>7</option>-->
     </select>
     <input type="submit" value="Enviar">
     <input type= "hidden" name=Usuario value=<%=@nombre_usuario%>>
@@ -130,45 +112,30 @@
 <form method='post' action='/disminuir_contador_bandera_P'>
     <h4>Sector de poner banderas</h4>    
     <p>
-    Eje X:
+    FILA:
     <select name=X>
     <%@mostrar_tablero.each_with_index do |filas,p|%>
     <option><%=(p+1).to_s%></option>
     <%end%>
-      <!--<option>0</option>
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-      <option>6</option>
-      <option>7</option>-->
     </select>
     &nbsp
-    Eje Y:
+    COLUMNA:
     <select name=Y>
-    <%@mostrar_tablero.each_with_index do |filas,p|%>
+    <%@mostrar_tablero[0].each_with_index do |filas,p|%>
     <option><%=(p+1).to_s%></option>
     <%end%>
-      <!--<option>0</option>
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-      <option>6</option>
-      <option>7</option>-->
     </select>
-    <input type="submit" value="poner_bandera">
+    <input type="submit" value="poner bandera">
     <br>
     <input type="hidden" name=Usuario value=<%=@nombre_usuario%>>
     </p>
 </form>
 
-<form method='post' action='formatoP'>
+    <form method='post' action='formatoP'>
         <br>
         <input type='submit' value='REINICIAR PARTIDA'>
         <br>
     </form>
+</div>
 </body>
 </html>
