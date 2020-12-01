@@ -60,8 +60,9 @@
     </style>
 </head>
 <body>
-<h1><%= "El jugador:"+@nombre_usuario +" perdio"%> </h1>
-<h1>x: <%=@X%> y: <%=@Y%> </h1>
+<h1><%= "El jugador: "+@nombre_usuario +" PERDIO!!!! "%> </h1>
+<h1>La casilla que destapo FILA: <%=@I%> COLUMNA: <%=@J%> </h1>
+<h1>Era MINA!!!</h1>
 <table class="egt">
   <tr>
     <td>X/Y</td>
@@ -73,19 +74,7 @@
   <tr>
     <th scope="row"><%= n+1%></th>
     <% for k in 0..@Y-1 do %>
-   <!-- <td>
-        <% if @mostrar_tablero[n][k].getEstado_celda()==true && @mostrar_tablero[n][k].getEstado_bandera()==false%>
-                <%=@mostrar_tablero[n][k].getCaracter_celda()%>
-        <% else %> 
-            <% if @mostrar_tablero[n][k].getEstado_bandera() %>
-                <%="B"%>  
-            <% else %>
-                <%=" "%>
-            <% end %>
-        <% end %>
-    </td>-->
     <td><%=@mostrar_tablero[n][k].getCaracter_celda()%></td>
-   <!--<th><%= k.to_s+"-"+n.to_s%></th>-->
     <% end %>
     <% end %>
   </tr>

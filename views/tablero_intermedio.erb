@@ -13,7 +13,7 @@
         background-image: url('/images/b.jpeg');
         background-size: 100% auto;
     }
-     table, th, td 
+    table, th, td 
     {
         border: 1px solid black;
     }
@@ -91,8 +91,6 @@
             <% end %>
         <% end %>
     </td>
-    <!--<td><%=@mostrar_tablero[n][k].getCaracter_celda()%></td>
-   <th><%= k.to_s+"-"+n.to_s%></th>-->
     <% end %>
     <% end %>
   </tr>
@@ -103,14 +101,14 @@
 <form method='post' action='/obteneryandx_I'>
     <h4>Sector para destapar una casilla</h4>
 <p>
-    Eje X:
+    FILA:
     <select name=X>
     <% for k in 0..filas do %>
     <option><%=k+1%></option>
     <%end%>
     </select>
     &nbsp
-    Eje Y:
+    COLUMNA:
     <select name=Y>
     <% for n in 0..columnas do %>
     <option><%=n+1%></option>
@@ -121,16 +119,18 @@
     </p>
     
 </form>
+
 <form method='post' action='/disminuir_contador_bandera_2'>
+    <h4>Sector de poner banderas</h4>
     <p>
-    Eje X:
+    FILA:
     <select name=X>
     <% for k in 0..filas do %>
     <option><%=k+1%></option>
     <%end%>
     </select>
     &nbsp
-    Eje Y:
+    COLUMNA:
     <select name=Y>
     <% for n in 0..columnas do %>
     <option><%=n+1%></option>

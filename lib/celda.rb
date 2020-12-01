@@ -1,7 +1,7 @@
 class Celda
 
     def initialize()
-        @caracter_celda=" "
+        @caracter_celda="0"
         @estado_celda=false
         @estado_bandera=false
     end

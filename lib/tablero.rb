@@ -1,7 +1,13 @@
 require './lib/celda'
 class Tablero
     
-    attr_accessor :filas, :columnas, :tablero, :cantidad_banderas
+    attr_accessor :filas, :columnas, :tablero, :cantidad_banderas, :total_casillas_descubiertas, :cantidad_minas
+    def getTotal_casillas_descubiertas()
+        return @total_casillas_descubiertas
+    end
+    def setTotal_casillas_descubiertas(total_casillas_descubiertas)
+        self.total_casillas_descubiertas=total_casillas_descubiertas
+    end
     def getFilas()
         return filas
     end
@@ -23,7 +29,7 @@ class Tablero
     def setTablero(tablero)
         self.tablero=tablero
     end
-    def setTablero_x_y(tablero)
+    def setTablero_x_y()
         self.tablero=tablero
     end
     def getCantidad_banderas()
@@ -32,31 +38,20 @@ class Tablero
     def setCantidad_banderas(cantidad_bandera)
         @cantidad_banderas=cantidad_bandera
     end 
-    def generar_tablero_con_celda(x,y,cantidad_bandera)  
-        @cantidad_banderas=cantidad_bandera
-        @filas=x
-        @columnas=y
-        @tablero= Array.new(filas) { Array.new(columnas) {celda=Celda.new}}
+    def getCantidad_minas()
+        return @cantidad_banderas
     end
-    def generar_tablero_con_celda_nivel_basico()
-        @cantidad_banderas=10
-        @filas=8
-        @columnas=8
-        @tablero= Array.new(filas) { Array.new(columnas) {celda=Celda.new} }
-    end
-    def generar_tablero_con_celda_nivel_intermedio()
-        @cantidad_banderas=40
-        @filas=16
-        @columnas=16
-        @tablero= Array.new(filas) { Array.new(columnas) {celda=Celda.new} }
+    def setCantidad_minas(cantidad_mina)
+        @cantidad_minas=cantidad_mina
     end 
-    def generar_tablero_con_celda_nivel_personalizado(x,y,cantidad_bandera)  
+    def generar_tablero_con_celda(x,y,cantidad_bandera,cantidad_mina)  
+        @total_casillas_descubiertas=0
         @cantidad_banderas=cantidad_bandera
+        @cantidad_minas=cantidad_mina
         @filas=x
         @columnas=y
         @tablero= Array.new(filas) { Array.new(columnas) {celda=Celda.new}}
     end
-
     def generar_tablero_con_minas_con_celda()   
         @tablero[0][0].setCaracter_celda("#")
         @tablero[0][1].setCaracter_celda("#")
@@ -191,9 +186,9 @@ class Tablero
     def aleatorio_por_columnas()
         return rand(@columnas)
     end
-    def insert_minas_aleatoreamente(cant_minas)
+    def insert_minas_aleatoreamente()
         i=0
-        c=cant_minas
+        c=@cantidad_minas
         while i<c
                 x=aleatorio_por_filas()
                 y=aleatorio_por_columnas()
@@ -210,4 +205,10 @@ class Tablero
         return  @tablero[x][y].getCaracter_celda()=="#"
     end
     
+    def aumentar_total_casillas_descubiertas_en_uno()
+        @total_casillas_descubiertas=@total_casillas_descubiertas+1
+    end
+    def tablero_descubierto_sin_minas()
+        return @total_casillas_descubiertas==((@filas*@columnas)-@cantidad_minas)
+    end
 end

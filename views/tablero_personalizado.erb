@@ -13,9 +13,26 @@
         background-image: url('/images/b.jpeg');
         background-size: 100% auto;
     }
+    table, th, td 
+    {
+        border: 1px solid black;
+    }
+    table 
+    {
+        border-collapse: collapse;
+        background-size: 100% 100%;
+        width: 100%;
+    }
+    tr:hover
+    {
+        background-color: #ffff99;
+    }
+    td {
+        text-align: center;
+    }
     .content-prev {
         background-color: rgba(200, 200, 200, 0.65);
-        width:600px;
+        width:800px;
         height:auto;
         padding: 10px 10px 10px;
         margin:45px 0px 0px 0px;
@@ -29,7 +46,11 @@
     h1{
         color: darkblue;
     }
-
+     .content-box{
+        background-color: rgba(200, 200, 200, 0.65);
+        width:350px;
+        margin:-300px 0px -100px 900px;
+    }
     .numeros-mat{
         position: absolute;
         top: 65px; left: 80px;
@@ -73,25 +94,24 @@
             <% end %>
         <% end %>
     </td>
-    <!--<td><%=@mostrar_tablero[n][k].getCaracter_celda()%></td>
-   <th><%= k.to_s+"-"+n.to_s%></th>-->
     <% end %>
     <% end %>
   </tr>
   <tr>  
  </table>
 </div>
+<div class="content-box">
 <form method='post' action='/obteneryandx_P'>
     <h4>Sector para destapar una casilla</h4>
 <p>
-    Eje X:
+    FILA:
     <select name=X>
     <% for k in 0..filas do %>
     <option><%=k+1%></option>
     <%end%>
     </select>
     &nbsp
-    Eje Y:
+    COLUMNA:
     <select name=Y>
     <% for n in 0..columnas do %>
     <option><%=n+1%></option>
@@ -105,14 +125,14 @@
 <form method='post' action='/disminuir_contador_bandera_P'>
     <h4>Sector de poner banderas</h4>    
  <p>
-    Eje X:
+    FILA:
     <select name=X>
     <% for k in 0..filas do %>
     <option><%=k+1%></option>
     <%end%>
     </select>
     &nbsp
-    Eje Y:
+    COLUMNA:
     <select name=Y>
     <% for n in 0..columnas do %>
     <option><%=n+1%></option>
@@ -128,5 +148,6 @@
         <input type='submit' value='REINICIAR PARTIDA'>
         <br>
     </form>
+</div>
 </body>
 </html>
